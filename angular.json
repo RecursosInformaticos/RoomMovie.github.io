@@ -3,7 +3,7 @@
     "version": 1,
     "newProjectRoot": "projects",
     "projects": {
-        "RoomMovie": {
+        "roommovie.github.io": {
             "projectType": "application",
             "schematics": {
                 "@schematics/angular:component": {
@@ -17,7 +17,7 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "outputPath": "dist/RoomMovie.github.io",
+                        "outputPath": "dist/roommovie.github.io",
                         "index": "src/index.html",
                         "main": "src/main.ts",
                         "polyfills": "src/polyfills.ts",
@@ -64,18 +64,18 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
-                        "browserTarget": "RoomMovie:build"
+                        "browserTarget": "roommovie.github.io:build"
                     },
                     "configurations": {
                         "production": {
-                            "browserTarget": "RoomMovie:build:production"
+                            "browserTarget": "roommovie.github.io:build:production"
                         }
                     }
                 },
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "browserTarget": "RoomMovie:build"
+                        "browserTarget": "roommovie.github.io:build"
                     }
                 },
                 "test": {
@@ -113,16 +113,16 @@
                     "builder": "@angular-devkit/build-angular:protractor",
                     "options": {
                         "protractorConfig": "e2e/protractor.conf.js",
-                        "devServerTarget": "RoomMovie:serve"
+                        "devServerTarget": "roommovie.github.io:serve"
                     },
                     "configurations": {
                         "production": {
-                            "devServerTarget": "RoomMovie:serve:production"
+                            "devServerTarget": "roommovie.github.io:serve:production"
                         }
                     }
                 }
             }
         }
     },
-    "defaultProject": "RoomMovie"
+    "defaultProject": "roommovie.github.io"
 }
