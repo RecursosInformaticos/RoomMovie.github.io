@@ -9,8 +9,12 @@ import { MoviedetailComponent } from "./components/moviedetail/moviedetail.compo
 import { LogindbComponent } from "./components/logindb/logindb.component";
 import { DeletemovieComponent } from "./components/deletemovie/deletemovie.component";
 import { AuthGuard } from './guards/auth.guard';
+import { EditmovieComponent } from "./components/editmovie/editmovie.component";
+import { LoginoffComponent } from "src/app/components/loginoff/loginoff.component";
 
 export const routes: Routes = [
+  { path: 'logout', component: LoginoffComponent },
+  { path: 'editmovie/:id', component: EditmovieComponent },
          { path: 'deletemovie', component: DeletemovieComponent },
          //  { path: 'aboutangular', component: AboutangularComponent },
          { path: 'movies', component: MoviesComponent },

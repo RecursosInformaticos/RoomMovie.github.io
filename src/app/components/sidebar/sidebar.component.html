@@ -14,5 +14,27 @@
         <a [routerLink]="['/addseries', 'ford', 'focus']" routerLinkActive="active">
             <img src="assets/icons/heart.svg" alt="sidebar nav link icon">
         </a>
+
+        <ng-container *ngIf="!authService.loggedIn(); else loggedIn">
+
+            <!-- 
+                   <a [routerLink]="['/addseries', 'ford', 'focus']" routerLinkActive="active">
+                <img src="assets/icons/eye.svg" alt="sidebar nav link icon">
+            </a>
+                <li class="nav-item">
+                <a class="nav-link" routerLink="/signin" routerLinkActive="active">SignIn</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/signup" routerLinkActive="active">SignUp</a>
+            </li> -->
+        </ng-container>
+        <ng-template #loggedIn>
+            <a (click)="authService.logout()" routerLinkActive="active">
+                <img src="assets/icons/logout.svg" alt="sidebar nav link icon">
+            </a>
+        </ng-template>
+
+
+
     </nav>
 </div>

@@ -49,6 +49,7 @@ export class AddmovieComponent implements OnInit {
     Collname: 'null',
     exist: false,
   };
+  year="";
   movie: MoviesRootObject = {
     movieName: '',
     Coll: this.col,
@@ -132,7 +133,7 @@ export class AddmovieComponent implements OnInit {
 
     this.searchMovieStop();
     this.searching = true;
-    this.as.searchMovie(this.movie.movieName).subscribe((data) => {
+    this.as.searchMovie(this.movie.movieName,this.year).subscribe((data) => {
       this.searching = false;
       this.searchResults = data.results;
     });
@@ -168,7 +169,7 @@ export class AddmovieComponent implements OnInit {
       this.movie.idtmdb = data.id;
       this.movie.description = data.overview;
       this.movie.key = encodeURIComponent(data.title);
-      this.movie.movieName = data.title;
+     this.movie.movieName = data.title;
       for (let index = 0; index < data.genres.length; index++) {
         const element = data.genres[index].name;
         this.movie.genre.push(element);
@@ -202,7 +203,7 @@ if(data.overview==''){this.movie.description="null";}
           'https://image.tmdb.org/t/p/w600_and_h900_bestv2' +
           data.belongs_to_collection.poster_path;
         this.col.coverColl =
-          'https://image.tmdb.org/t/p/origina' +
+          'https://image.tmdb.org/t/p/original' +
           data.belongs_to_collection.backdrop_path;
       } else {
         this.col = {

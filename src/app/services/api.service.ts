@@ -41,10 +41,12 @@ export class ApiService {
   //    );
 
   // }
-  searchMovie(q: string): Observable<TMDBRootObject> {
+  searchMovie(q: string, y: string): Observable<TMDBRootObject> {
     return this.http.get<TMDBRootObject>(
-      'https://api.themoviedb.org/3/search/movie?api_key=2ec9323401793e5a207687ea4612d147&language=es&query=' +
-        q
+      'https://api.themoviedb.org/3/search/movie?api_key=2ec9323401793e5a207687ea4612d147&language=es-ES&query=' +
+        q +
+        '&year=' +
+        y
     );
   }
   seleccionar(id: number): Observable<TMDBIDRootObject> {
@@ -54,15 +56,15 @@ export class ApiService {
         '?api_key=2ec9323401793e5a207687ea4612d147&language=es-MX'
     );
   }
-  addmovie(pelicula: MoviesRootObject): Observable<MoviesRootObject> {
-    return this.http.post<MoviesRootObject>(
-      'https://apiroommovie.herokuapp.com/api/movies',
+  editmovie (pelicula: MoviesRootObject): Observable<MoviesRootObject> {
+    return this.http.put<MoviesRootObject>(
+      'https://apiroommovie.herokuapp.com/api/movies/'+pelicula._id,
       {
+        _id:pelicula._id,
         id: pelicula.id,
         idimdb: pelicula.idimdb,
         idtmdb: pelicula.idtmdb,
-      //  key: 'Batman%20inicia',
-      key:"Batman%3A%20El%20caballero%20de%20la%20noche%20asciende",
+        key: pelicula.key,
         movieName: pelicula.movieName,
         description: pelicula.description,
         idColl: pelicula.Coll.idColl,
@@ -76,6 +78,36 @@ export class ApiService {
         cover: pelicula.cover,
         url: pelicula.url,
       }
+    );
+  }
+  addmovie(pelicula: MoviesRootObject): Observable<MoviesRootObject> {
+    return this.http.post<MoviesRootObject>(
+      'https://apiroommovie.herokuapp.com/api/movies',
+      {
+        id: pelicula.id,
+        idimdb: pelicula.idimdb,
+        idtmdb: pelicula.idtmdb,
+        key: pelicula.key,
+        movieName: pelicula.movieName,
+        description: pelicula.description,
+        idColl: pelicula.Coll.idColl,
+        CollName: pelicula.Coll.Collname,
+        imgColl: pelicula.Coll.imgColl,
+        coverColl: pelicula.Coll.coverColl,
+        exist: pelicula.Coll.exist,
+        genre: pelicula.genre,
+        rate: pelicula.rate,
+        img: pelicula.img,
+        cover: pelicula.cover,
+        url: pelicula.url,
+      }
+    );
+  }
+  movietmdb(id: string) {
+    return this.http.get<TMDBRootObject>(
+      'https://api.themoviedb.org/3/movie/' +
+        id +
+        '?api_key=2ec9323401793e5a207687ea4612d147&language=es'
     );
   }
 

@@ -47,7 +47,12 @@
         <p>Cover</p>
         <div class="movie-info" [ngClass]="{'col-70':!isMobile, 'col-100':isMobile}">
             <mat-form-field appearance="outline">
-                <mat-label>URL IMDB</mat-label>
+                <mat-label>Año</mat-label>
+                <input [(ngModel)]="year" required name="name" matInput name="url">
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline">
+                <mat-label>URL google drive</mat-label>
                 <input [(ngModel)]="movie.url" required name="name" matInput name="url">
             </mat-form-field>
         </div>
