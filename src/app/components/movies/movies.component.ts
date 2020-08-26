@@ -14,15 +14,18 @@ export class MoviesComponent implements OnInit {
   public loading: boolean;
   movies: MoviesRootObject[] = null;
   public genres = Genre;
+  filtermovie: any = '';
   searchText: any = '';
   sortBy: any = 'id';
-  constructor(private moviesservice: MoviesService) {this.loading=true;}
+  constructor(private moviesservice: MoviesService) {
+    this.loading = true;
+  }
 
   ngOnInit() {
     // this.movies = this.moviesservice.getmovies();
     this.moviesservice.getmovies().subscribe((movies) => {
       this.movies = movies;
-      this.loading=false;
+      this.loading = false;
       //   this.applyFilter(this.selectedGenre);
     });
     // this.moviesservice.getmovies()

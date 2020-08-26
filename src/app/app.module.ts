@@ -26,6 +26,7 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
 import { AuthGuard } from './guards/auth.guard';
 import { LoginoffComponent } from './components/loginoff/loginoff.component';
 import { EditmovieComponent } from './components/editmovie/editmovie.component';
+import { FilterPipe } from './pipes/filter.pipe';
 // import { ConfirmDialogComponent } from './components/dialogs/confirm-dialog/confirm-dialog.component';
 // import { AlertDialogComponent } from './components/dialogs/alert-dialog/alert-dialog.component';
 // import { FormDialogComponent } from './components/dialogs/form-dialog/form-dialog.component';
@@ -50,6 +51,7 @@ import { EditmovieComponent } from './components/editmovie/editmovie.component';
     DeletemovieComponent,
     LoginoffComponent,
     EditmovieComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,

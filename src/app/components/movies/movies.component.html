@@ -1,6 +1,6 @@
 <div class="search-bar">
     <img src="assets/icons/search.svg" alt="search icon">
-    <input name="searchText" type="search" placeholder="Buscar" aria-label="Search">
+    <input name="filtermovie" type="search" placeholder="Buscar" aria-label="Search" [(ngModel)]="filtermovie">
 </div>
 <div class="main-container">
 
@@ -38,7 +38,7 @@
                 <img src="../../../assets/loading.gif" width="50%" />
             </div>
             <!-- <div *ngFor="let movie of visibleMovies | filter: searchText | sort: sortBy" class="movie"> -->
-            <div *ngFor="let movie of movies " class="movie">
+            <div *ngFor="let movie of movies | filter:filtermovie" class="movie">
                 <a [routerLink]="['/moviesdetail/' + movie._id + '/' + movie.key]">
                     <figure>
                         <img src="{{movie.img}}" alt="movie poster">

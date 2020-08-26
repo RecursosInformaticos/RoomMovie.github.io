@@ -137,8 +137,8 @@
         padding: 1em;
     }
     .movie {
-        margin-left: 1em;
-        margin-bottom: 1.8em;
+        margin-left: 0.0px;
+        margin-bottom: 1.2em;
         flex-basis: 20%;
         a {
             color: $primary-title;
@@ -147,6 +147,7 @@
             padding: 0;
             margin: 0;
             img {
+                width: 250px;
                 -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
                 -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
                 box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
