@@ -237,10 +237,10 @@ if(data.overview==''){this.movie.description="null";}
     this.urlSafe = this.safeurl(this.movie.url);
     // this.movie.url =
     //   'https://drive.google.com/file/d/1kLxKsTRYKWXYKM0qojuL-eYJv_cNCPxa/preview';
-    alert('URL:' + this.movie.url);
+ //   alert('URL:' + this.movie.url);
   }
   saveMovie() {
-    alert('wwww');
+  //  alert('wwww');
     // if (this.movie.movieName == '') {
     //   this.dialog.alert({
     //     title: 'Error',
