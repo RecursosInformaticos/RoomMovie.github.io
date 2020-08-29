@@ -171,3 +171,14 @@ export interface Belongstocollection {
   poster_path: string;
   backdrop_path: string;
 }
+
+export interface CollecRootObject {
+  peliculas: string[];
+  _id: string;
+  idColl: number;
+  CollName: string;
+  imgColl: string;
+  coverColl: string;
+  exist: boolean;
+  __v: number;
+}

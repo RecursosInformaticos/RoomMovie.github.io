@@ -18,6 +18,9 @@ export class MoviesService {
   getmovies() {
     return this.http.get(this.urlroommovies + 'movies').pipe(tap(console.log));
   }
+  getcollec(){
+    return this.http.get(this.urlroommovies+'collec').pipe(tap(console.log));
+  }
   // getmovieid(id:string){
   //    return this.http.get(this.urlroommovies + 'movies'+'/'+id).pipe(tap(console.log));
   // }

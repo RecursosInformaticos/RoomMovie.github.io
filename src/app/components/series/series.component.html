@@ -1,15 +1,16 @@
 <div class="swiper-container" [swiper]="config">
     <div class="swiper-wrapper">
-        <div class="swiper-slide" *ngFor="let item of [1,1,1,1]">
+        <div class="swiper-slide" *ngFor="let item of collec">
 
             <div class="card">
-                <div class="card_image"> <img src="https://image.tmdb.org/t/p/original/4UHZWw5lV3ZoadTjXuVOakdH32L.jpg" />
+                <div class="card_image" *ngIf="item.coverColl">
+                    <img src={{item.coverColl}} />
                 </div>
 
             </div>
             <div class="card_title title-white">
                 <h1>
-                    Batman Collection
+                    {{item.CollName}}
                 </h1>
 
             </div>

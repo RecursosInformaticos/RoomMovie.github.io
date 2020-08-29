@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { CollecRootObject } from "../../interfaces/interfaces";
+import { MoviesService } from '../../services/movies.service';
 import {
   SwiperComponent,
   SwiperDirective,
@@ -27,7 +28,14 @@ export class SeriesComponent implements OnInit {
       clickable: false,
     },
   };
-  constructor() {}
+  collec: CollecRootObject[] = null;
+  constructor(private moviesservice: MoviesService) {
+     this.moviesservice.getcollec().subscribe((collec) => {
+       this.collec = collec;
+      // this.loading = false;
+       //   this.applyFilter(this.selectedGenre);
+     });
+  }
 
   ngOnInit(): void {}
 }
