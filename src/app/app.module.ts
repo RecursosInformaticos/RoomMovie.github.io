@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+
 
 import { AppRoutingModule,routes } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,7 +30,22 @@ import { FilterPipe } from './pipes/filter.pipe';
 // import { ConfirmDialogComponent } from './components/dialogs/confirm-dialog/confirm-dialog.component';
 // import { AlertDialogComponent } from './components/dialogs/alert-dialog/alert-dialog.component';
 // import { FormDialogComponent } from './components/dialogs/form-dialog/form-dialog.component';
+import { FormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
+import {
+  SwiperModule,
+  SwiperConfigInterface,
+  SWIPER_CONFIG,
+} from 'ngx-swiper-wrapper';
+ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
+   observer: true,
+   direction: 'horizontal',
+   threshold: 50,
+   spaceBetween: 5,
+   slidesPerView: 1,
+   centeredSlides: true,
+ };
 @NgModule({
   declarations: [
     // ConfirmDialogComponent,
@@ -54,8 +69,11 @@ import { FilterPipe } from './pipes/filter.pipe';
     FilterPipe,
   ],
   imports: [
+    SwiperModule,
     BrowserModule,
-   AppRoutingModule,
+    FlexLayoutModule,
+    FormsModule,
+    AppRoutingModule,
     // RouterModule.forRoot(routes),
 
     HttpClientModule,
@@ -65,7 +83,10 @@ import { FilterPipe } from './pipes/filter.pipe';
     ...MATERIAL,
   ],
   exports: [],
-  providers: [
+  providers: [  {
+      provide: SWIPER_CONFIG,
+      useValue: DEFAULT_SWIPER_CONFIG
+    },
     AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,
