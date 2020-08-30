@@ -24,3 +24,14 @@ export interface Coll {
   exist: boolean;
   Collname: string;
 }
+
+export interface CollRootObject {
+  peliculas: string[];
+  _id: string;
+  idColl: number;
+  CollName: string;
+  imgColl: string;
+  coverColl: string;
+  exist: boolean;
+  __v: number;
+}

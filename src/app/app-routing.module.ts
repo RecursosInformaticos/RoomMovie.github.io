@@ -11,36 +11,38 @@ import { DeletemovieComponent } from "./components/deletemovie/deletemovie.compo
 import { AuthGuard } from './guards/auth.guard';
 import { EditmovieComponent } from "./components/editmovie/editmovie.component";
 import { LoginoffComponent } from "src/app/components/loginoff/loginoff.component";
+import { CollecdetailComponent } from "src/app/components/collecdetail/collecdetail.component";
 
 export const routes: Routes = [
   { path: 'logout', component: LoginoffComponent },
   { path: 'editmovie/:id', component: EditmovieComponent },
-         { path: 'deletemovie', component: DeletemovieComponent },
-         //  { path: 'aboutangular', component: AboutangularComponent },
-         { path: 'movies', component: MoviesComponent },
-         { path: 'series', component: SeriesComponent },
-         {
-           path: 'addmovie',
-           component: AddmovieComponent,
-           canActivate: [AuthGuard],
-         },
-         { path: 'login', component: LogindbComponent },
-         //  { path: 'addseries/:id/:name', component: AddseriesComponent },
-         { path: '', redirectTo: '/movies', pathMatch: 'full' },
-         {
-           path: 'moviesdetail/:id/:key',
-           component: MoviedetailComponent,
-         },
-         {
-           path: 'signin',
-           component: LogindbComponent,
-         },
-         //  {
-         //    path: 'movies/movies/moviesdetail/:id/:key',
-         //    component: MoviedetailComponent,
-         //  },
-         { path: '', redirectTo: '/movies', pathMatch: 'full' },
-       ];
+  { path: 'deletemovie', component: DeletemovieComponent },
+  //  { path: 'aboutangular', component: AboutangularComponent },
+  { path: 'movies', component: MoviesComponent },
+  { path: 'series', component: SeriesComponent },
+  {
+    path: 'addmovie',
+    component: AddmovieComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'login', component: LogindbComponent },
+  //  { path: 'addseries/:id/:name', component: AddseriesComponent },
+  { path: '', redirectTo: '/movies', pathMatch: 'full' },
+  {
+    path: 'moviesdetail/:id/:key',
+    component: MoviedetailComponent,
+  },
+  {
+    path: 'signin',
+    component: LogindbComponent,
+  },
+  //  {
+  //    path: 'movies/movies/moviesdetail/:id/:key',
+  //    component: MoviedetailComponent,
+  //  },
+  { path: '', redirectTo: '/movies', pathMatch: 'full' },
+  { path: 'collecdetail/:id', component: CollecdetailComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

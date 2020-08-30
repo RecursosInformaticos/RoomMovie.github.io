@@ -17,15 +17,15 @@ import {
 export class SeriesComponent implements OnInit {
   public config: SwiperConfigInterface = {
     slidesPerView: 'auto',
-    //  loop: true,
+     //loop: true,
     autoplay: {
-      delay: 5000,
+      delay: 3000,
       disableOnInteraction: false,
     },
     spaceBetween: 30,
     pagination: {
       el: '.swiper-pagination',
-      clickable: false,
+      clickable: true,
     },
   };
   collec: CollecRootObject[] = null;

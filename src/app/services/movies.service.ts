@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { MoviesRootObject } from "../interfaces/movies.model";
+import { MoviesRootObject,CollRootObject } from "../interfaces/movies.model";
 // RxJs
 import { Observable } from 'rxjs/internal/Observable';
 import { of } from 'rxjs/internal/observable/of';
@@ -15,11 +15,19 @@ export class MoviesService {
   //   return this.http.get<MoviesRootObject>(this.urlroommovies + 'movies');
   // }
   private moviesEndpoint = 'https://apiroommovie.herokuapp.com/api/movies';
+  private collEndpoint = 'https://apiroommovie.herokuapp.com/api/collec';
   getmovies() {
     return this.http.get(this.urlroommovies + 'movies').pipe(tap(console.log));
   }
-  getcollec(){
-    return this.http.get(this.urlroommovies+'collec').pipe(tap(console.log));
+  getcollec() {
+    return this.http.get(this.urlroommovies + 'collec').pipe(tap(console.log));
+  }
+  getcollecid(id: string): Observable<CollRootObject> {
+    const url = `${this.collEndpoint}/${id}`;
+    return this.http.get<CollRootObject>(url).pipe(
+      tap((_) => console.log(`fetched coll with id=${id}`)),
+      catchError(this.handleError<CollRootObject>(`getColl id=${id}`))
+    );
   }
   // getmovieid(id:string){
   //    return this.http.get(this.urlroommovies + 'movies'+'/'+id).pipe(tap(console.log));
@@ -31,12 +39,10 @@ export class MoviesService {
       catchError(this.handleError<MoviesRootObject>(`getMovie id=${id}`))
     );
   }
-    deletemovie(id:string){
+  deletemovie(id: string) {
     return this.http.delete(
-      'https://apiroommovie.herokuapp.com/api/movies/' +
-      id
+      'https://apiroommovie.herokuapp.com/api/movies/' + id
     );
-
   }
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
