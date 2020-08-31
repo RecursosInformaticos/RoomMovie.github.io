@@ -66,6 +66,7 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    margin-right: 30px;
 }
 
 .card-lg__container .card__text-lg {
@@ -110,9 +111,10 @@ main {
     background-position: center center;
     box-shadow: inset 0 0 100vw 100vw rgba(0, 0, 0, 0.3), 0 16px 8px -8px rgba(0, 0, 0, 0.4);
     border-radius: 8px;
-    width: 104px;
-    height: calc(100% - 64px);
-    margin: 0 8px;
+    width: 200px;
+    height: calc(100% - 34px);
+    margin: 0 104px;
+    //   margin-left: 110px;
     padding: 24px 16px;
     display: flex;
     flex-direction: column;
@@ -122,7 +124,7 @@ main {
 }
 
 .card-sm:hover {
-    margin: -8px 8px 0;
+    margin: -103px 103px 0;
 }
 
 .card-sm .card__text-sm {
