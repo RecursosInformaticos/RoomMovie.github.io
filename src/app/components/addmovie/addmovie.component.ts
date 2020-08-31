@@ -16,6 +16,7 @@ import {
   MAT_DATE_FORMATS,
   MAT_DATE_LOCALE,
 } from '@angular/material/core';
+import { Router } from '@angular/router';
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
 }
@@ -49,7 +50,7 @@ export class AddmovieComponent implements OnInit {
     Collname: 'null',
     exist: false,
   };
-  year="";
+  year = '';
   movie: MoviesRootObject = {
     movieName: '',
     Coll: this.col,
@@ -86,11 +87,10 @@ export class AddmovieComponent implements OnInit {
     private ms: MoviesService,
     private as: ApiService,
     private cs: CommonService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) {}
-  openDialog() {
-   
-  }
+  openDialog() {}
   ngOnInit(): void {
     //  this.url = this.sanitizer.bypassSecurityTrustResourceUrl(this.movie.url);
     this.urlSafe = this.safeurl(this.url);
@@ -120,7 +120,9 @@ export class AddmovieComponent implements OnInit {
       this.searchMovie();
     }, 500);
   }
-  cncelload() {}
+  cncelload() {
+    this.router.navigate(['/movies']);
+  }
   searchMovie() {
     if (this.movie.movieName.length < 3) {
       return;
@@ -133,7 +135,7 @@ export class AddmovieComponent implements OnInit {
 
     this.searchMovieStop();
     this.searching = true;
-    this.as.searchMovie(this.movie.movieName,this.year).subscribe((data) => {
+    this.as.searchMovie(this.movie.movieName, this.year).subscribe((data) => {
       this.searching = false;
       this.searchResults = data.results;
     });
@@ -169,7 +171,7 @@ export class AddmovieComponent implements OnInit {
       this.movie.idtmdb = data.id;
       this.movie.description = data.overview;
       this.movie.key = encodeURIComponent(data.title);
-     this.movie.movieName = data.title;
+      this.movie.movieName = data.title;
       for (let index = 0; index < data.genres.length; index++) {
         const element = data.genres[index].name;
         this.movie.genre.push(element);
@@ -189,7 +191,9 @@ export class AddmovieComponent implements OnInit {
       //     //this.ge
       //     // this.movie.genre.push(value.name);
       //   });
-if(data.overview==''){this.movie.description="null";}
+      if (data.overview == '') {
+        this.movie.description = 'null';
+      }
       console.log(data);
       console.log(Number(res));
       console.log(data.title);
@@ -237,10 +241,10 @@ if(data.overview==''){this.movie.description="null";}
     this.urlSafe = this.safeurl(this.movie.url);
     // this.movie.url =
     //   'https://drive.google.com/file/d/1kLxKsTRYKWXYKM0qojuL-eYJv_cNCPxa/preview';
- //   alert('URL:' + this.movie.url);
+    //   alert('URL:' + this.movie.url);
   }
   saveMovie() {
-  //  alert('wwww');
+    //  alert('wwww');
     // if (this.movie.movieName == '') {
     //   this.dialog.alert({
     //     title: 'Error',
@@ -254,7 +258,7 @@ if(data.overview==''){this.movie.description="null";}
     console.log(this.movie);
     this.as.addmovie(this.movie).subscribe((data) => {
       console.log(data);
-       this.dialog.open(DialogDataExampleDialog);
+      this.dialog.open(DialogDataExampleDialog);
     });
   }
   uploadCover() {

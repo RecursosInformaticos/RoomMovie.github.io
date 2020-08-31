@@ -1,5 +1,5 @@
 import { Component, OnInit,Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MoviesRootObject } from 'src/app/interfaces/movies.model';
 import { MoviesService } from 'src/app/services/movies.service';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
@@ -19,10 +19,11 @@ export class EditmovieComponent implements OnInit {
   public loading: boolean;
   error: string = null;
   constructor(
-    private as:ApiService,
-    private activatedRoute:ActivatedRoute,
+    private as: ApiService,
+    private activatedRoute: ActivatedRoute,
     public sanitizer: DomSanitizer,
-    private movieservice: MoviesService
+    private movieservice: MoviesService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -44,14 +45,13 @@ export class EditmovieComponent implements OnInit {
       (err) => (this.error = err)
     );
   }
-  cancel(){
-
+  cancel() {
+     this.router.navigate(['/movies']);
   }
-  savechange(){
-  
-    console.log(this.movie)
+  savechange() {
+    console.log(this.movie);
     this.as.editmovie(this.movie).subscribe((data) => {
-  alert('change save');
+      alert('change save');
     });
   }
 }
