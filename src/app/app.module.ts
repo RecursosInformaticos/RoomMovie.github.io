@@ -39,6 +39,7 @@ import {
   SWIPER_CONFIG,
 } from 'ngx-swiper-wrapper';
 import { CollecdetailComponent } from './components/collecdetail/collecdetail.component';
+import { GenerefilterPipe } from './pipes/generefilter.pipe';
  const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
    observer: true,
    direction: 'horizontal',
@@ -69,6 +70,7 @@ import { CollecdetailComponent } from './components/collecdetail/collecdetail.co
     EditmovieComponent,
     FilterPipe,
     CollecdetailComponent,
+    GenerefilterPipe,
   ],
   imports: [
     SwiperModule,
