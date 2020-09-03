@@ -15,6 +15,7 @@ export class MoviesComponent implements OnInit {
   movies: MoviesRootObject[] = null;
   public genres = Genre;
   filtermovie: any = '';
+  filtergenere: any = '';
   searchText: any = '';
   sortBy: any = 'id';
   constructor(private moviesservice: MoviesService) {
