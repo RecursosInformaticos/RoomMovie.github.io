@@ -57,9 +57,10 @@ transform(value:any,arg:any):any{
   const resultmovie=[];
   for  (const iterator of value) {
     if (iterator.movieName.toLowerCase().indexOf(arg.toLowerCase()) > -1) {
-      // console.log('w');
+       console.log(iterator.genre.indexOf('Aventura'));
       resultmovie.push(iterator);
     };
+
   };
 return resultmovie;
 }

@@ -9,9 +9,9 @@
         <hr>
         <ul class="genre-list-items">
             <li *ngFor="let genre of genres | enumToArray">
-                <a>
-                    {{genre}}
-                </a>
+                <a [ngClass]="{'active': genre == selectedGenre}" [routerLink]="['/movies/']" [queryParams]="{filter:genre}" (click)="changeFilter($event)">
+                {{genre}}
+            </a>
             </li>
         </ul>
     </div>
@@ -21,7 +21,7 @@
     <div class="movies-container">
         <div class="movies-list-header">
             <span class="count" *ngIf="movies">
-                {{movies.length}}
+                {{visibleMovies.length}}
                  Peliculas
             </span>
             <div class="sort">
@@ -38,7 +38,7 @@
                 <img src="../../../assets/loading.gif" width="50%" />
             </div>
             <!-- <div *ngFor="let movie of visibleMovies | filter: searchText | sort: sortBy" class="movie"> -->
-            <div *ngFor="let movie of movies | filter:filtermovie | generefilter: sortBy" class="movie">
+            <div *ngFor="let movie of visibleMovies | filter:filtermovie | sort: sortBy" class="movie">
                 <a [routerLink]="['/moviesdetail/' + movie._id + '/' + movie.key]">
                     <figure>
                         <img src="{{movie.img}}" alt="movie poster">
