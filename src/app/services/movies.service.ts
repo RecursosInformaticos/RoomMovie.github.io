@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { MoviesRootObject,CollRootObject } from "../interfaces/movies.model";
+import { MoviesRootObject,CollRootObject,SeriesRootObject } from "../interfaces/movies.model";
 // RxJs
 import { Observable } from 'rxjs/internal/Observable';
 import { of } from 'rxjs/internal/observable/of';
@@ -18,6 +18,9 @@ export class MoviesService {
   private collEndpoint = 'https://apiroommovie.herokuapp.com/api/collec';
   getmovies() {
     return this.http.get(this.urlroommovies + 'movies').pipe(tap(console.log));
+  }
+   getseries() {
+    return this.http.get(this.urlroommovies + 'series').pipe(tap(console.log));
   }
   getcollec() {
     return this.http.get(this.urlroommovies + 'collec').pipe(tap(console.log));

@@ -42,6 +42,7 @@ import { CollecdetailComponent } from './components/collecdetail/collecdetail.co
 import { GenerefilterPipe } from './pipes/generefilter.pipe';
 import { SortPipe } from './pipes/sort.pipe';
 import { HomeComponent } from './components/home/home.component';
+import { SeriesdetailComponent } from './components/seriesdetail/seriesdetail.component';
  const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
    observer: true,
    direction: 'horizontal',
@@ -75,6 +76,7 @@ import { HomeComponent } from './components/home/home.component';
     GenerefilterPipe,
     SortPipe,
     HomeComponent,
+    SeriesdetailComponent,
   ],
   imports: [
     SwiperModule,
