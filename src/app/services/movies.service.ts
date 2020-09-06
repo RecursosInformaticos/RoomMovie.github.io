@@ -16,10 +16,11 @@ export class MoviesService {
   // }
   private moviesEndpoint = 'https://apiroommovie.herokuapp.com/api/movies';
   private collEndpoint = 'https://apiroommovie.herokuapp.com/api/collec';
+  private seriesEndpoint = 'https://apiroommovie.herokuapp.com/api/series';
   getmovies() {
     return this.http.get(this.urlroommovies + 'movies').pipe(tap(console.log));
   }
-   getseries() {
+  getseries() {
     return this.http.get(this.urlroommovies + 'series').pipe(tap(console.log));
   }
   getcollec() {
@@ -40,6 +41,13 @@ export class MoviesService {
     return this.http.get<MoviesRootObject>(url).pipe(
       tap((_) => console.log(`fetched movie with id=${id}`)),
       catchError(this.handleError<MoviesRootObject>(`getMovie id=${id}`))
+    );
+  }
+  getserieid(id: string): Observable<SeriesRootObject> {
+    const url = `${this.seriesEndpoint}/${id}`;
+    return this.http.get<SeriesRootObject>(url).pipe(
+      tap((_) => console.log(`fetched movie with id=${id}`)),
+      catchError(this.handleError<SeriesRootObject>(`getSerie id=${id}`))
     );
   }
   deletemovie(id: string) {
