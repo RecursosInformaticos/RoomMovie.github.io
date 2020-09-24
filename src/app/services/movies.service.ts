@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { MoviesRootObject,CollRootObject,SeriesRootObject } from "../interfaces/movies.model";
+import { MoviesRootObject, CollRootObject, SeriesRootObject } from '../interfaces/movies.model';
 // RxJs
 import { Observable } from 'rxjs/internal/Observable';
 import { of } from 'rxjs/internal/observable/of';
@@ -46,7 +46,7 @@ export class MoviesService {
   getserieid(id: string): Observable<SeriesRootObject> {
     const url = `${this.seriesEndpoint}/${id}`;
     return this.http.get<SeriesRootObject>(url).pipe(
-      tap((_) => console.log(`fetched movie with id=${id}`)),
+      tap((_) => console.log(`fetched serie with id=${id}`)),
       catchError(this.handleError<SeriesRootObject>(`getSerie id=${id}`))
     );
   }

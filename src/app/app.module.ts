@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 
-import { AppRoutingModule,routes } from './app-routing.module';
+import { AppRoutingModule, routes } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AboutangularComponent } from './components/aboutangular/aboutangular.component';
 import { MoviesComponent } from './components/movies/movies.component';
@@ -32,6 +32,8 @@ import { FilterPipe } from './pipes/filter.pipe';
 // import { FormDialogComponent } from './components/dialogs/form-dialog/form-dialog.component';
 import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { DemoMaterialModule } from './material-module';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 import {
   SwiperModule,
@@ -43,7 +45,8 @@ import { GenerefilterPipe } from './pipes/generefilter.pipe';
 import { SortPipe } from './pipes/sort.pipe';
 import { HomeComponent } from './components/home/home.component';
 import { SeriesdetailComponent } from './components/seriesdetail/seriesdetail.component';
- const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
+import { SelectaddComponent } from './components/selectadd/selectadd.component';
+const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
    observer: true,
    direction: 'horizontal',
    threshold: 50,
@@ -77,6 +80,7 @@ import { SeriesdetailComponent } from './components/seriesdetail/seriesdetail.co
     SortPipe,
     HomeComponent,
     SeriesdetailComponent,
+    SelectaddComponent,
   ],
   imports: [
     SwiperModule,
@@ -84,6 +88,7 @@ import { SeriesdetailComponent } from './components/seriesdetail/seriesdetail.co
     FlexLayoutModule,
     FormsModule,
     AppRoutingModule,
+    DemoMaterialModule,
     // RouterModule.forRoot(routes),
 
     HttpClientModule,

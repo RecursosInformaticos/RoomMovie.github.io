@@ -23,7 +23,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
-    this.router.navigate(['/addmovie']);
+    this.router.navigate(['/movies']);
   }
 
   getToken() {

@@ -22,7 +22,7 @@ export class LogindbComponent implements OnInit {
       (res) => {
         console.log(res);
         localStorage.setItem('token', res.token);
-        this.router.navigate(['/addmovie']);
+        this.router.navigate(['/addselect']);
       },
       (err) => console.log(err)
     );

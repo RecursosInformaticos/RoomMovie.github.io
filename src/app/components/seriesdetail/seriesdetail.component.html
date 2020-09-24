@@ -1,4 +1,4 @@
-<main class="body">
+<!-- <main class="body">
     <div class='list_item'>
         <input checked='checked' id='movie-The flash' name='movie' type='radio'>
         <label for='movie-The flash'>
@@ -37,9 +37,84 @@
             </section>
         </label>
     </div>
-    <!-- partial -->
+     partial 
 </main>
 
 <div class="embed-responsive embed-responsive-16by9 " *ngIf="urlSafe!=null">
     <iframe class="embed-responsive-item " allowfullscreen [src]="urlSafe "></iframe>
+</div> -->
+<div class="loading" *ngIf="loading">
+    <img src="../../../assets/loading.gif" width="50%" />
+</div>
+<div class="movie-info-container" *ngIf="urlSafe">
+    <div class="movie-banner-cover">
+        <img src="{{ serie.cover }}" alt="serie cover" />
+    </div>
+    <div class="movie-detail-container">
+        <div class="movie-detail">
+            <h2 *ngIf="serie.name">{{ serie.name }}</h2>
+            <div class="short-info">
+                <div class="genres">
+                    <span>Puntuacion: <strong>{{ serie.rate }}</strong></span
+          >
+          <br />
+          <span>Generos:</span>
+                    <!-- <a *ngFor="let genre of movie.genres" [routerLink]="['/movies/']" [queryParams]="{filter:genre}">
+                        {{genre}}
+                    </a> -->
+                    <a *ngFor="let genre of serie.seasons">
+            {{ genre.name }}
+          </a>
+                    <!-- <ng-container *ngIf="authService.loggedIn();">
+                        <button (click)="delete()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                        <button (click)="edit()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                    </ng-container> -->
+                </div>
+            </div>
+            <p class="desc">
+                {{ serie.overview }}
+            </p>
+
+            <mat-tab-group>
+                <mat-tab *ngFor="let season of serie.seasons" label="{{ season.name }}">
+                    <mat-card class="example-card" *ngFor="let episode of season.episodes let i=index">
+                        <mat-card-header>
+                            <div mat-card-avatar class="example-header-image"></div>
+                            <mat-card-title>{{episode.name}}</mat-card-title>
+                            <mat-card-subtitle>Episodio {{episode.episode_number}}</mat-card-subtitle>
+                        </mat-card-header>
+                        <img mat-card-image src="{{episode.img}}" alt="Photo of a Shiba Inu">
+                        <mat-card-content>
+                            <p>
+                                {{episode.overview}}
+                            </p>
+
+                        </mat-card-content>
+                        <mat-card-actions>
+                            <button mat-button (click)="openDialog(episode.url)">Open dialog</button>
+                            <button mat-button>SHARE</button>
+                        </mat-card-actions>
+                    </mat-card>
+
+                    <!-- <mat-selection-list #shoes [multiple]="false">
+                        <mat-list-option *ngFor="let episode of season.episodes" [value]="episode">
+
+                        </mat-list-option>
+                    </mat-selection-list>
+
+                    <p>Option selected: {{ shoes.selectedOptions.selected[0]?.value }}</p> -->
+                </mat-tab>
+            </mat-tab-group>
+            <!-- <mat-tab-group>
+                <mat-tab label="First"> Content 1 </mat-tab>
+                <mat-tab label="Second"> Content 2 </mat-tab>
+                <mat-tab label="Third"> Content 3 </mat-tab>
+            </mat-tab-group> -->
+
+        </div>
+    </div>
 </div>
