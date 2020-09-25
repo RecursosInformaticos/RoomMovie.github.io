@@ -21,7 +21,7 @@ jobs:
     - run: |
         npm install
         npm run test:ci
-      working-directory: '/'
+      working-directory: './'
   test_action_and_deploy_demo: # make sure the action works on a clean machine without building
     runs-on: ubuntu-latest
     steps:
@@ -34,5 +34,5 @@ jobs:
         build_configuration: # The branch the action should deploy from.
         base_href: ./
         deploy_branch: gh-pages # The branch the action should deploy to.
-        angular_dist_build_folder: dist/roommovie.github.io # The folder the action should deploy.
+        angular_dist_build_folder: roommovie.github.io/dist/roommovie.github.io # The folder the action should deploy.
         angular_project_dir: roommovie.github.io
