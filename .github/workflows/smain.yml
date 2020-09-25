@@ -23,6 +23,12 @@ jobs:
       run: |
         npm install
         npm run-script deploy
+        root@localhost:/opt/ashah# cat crunchify.yml 
+
+    - name: copy file to remote host
+      copy:
+        src:index.html
+        dest: /a
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
