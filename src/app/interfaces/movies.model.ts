@@ -38,17 +38,18 @@ export interface CollRootObject {
 
 export interface SeriesRootObject {
   rate?: number;
-  seasons: Season[];
-  genres: string[];
-  _id: string;
-  id: number;
-  name: string;
-  overview: string;
-  img: string;
-  cover: string;
-  in_production: boolean;
-  date: number;
-  __v?: number;
+  seasons?: Season[];
+  genres?: string[];
+
+  id?: number;
+  name?: string;
+  overview?: string;
+  img?: string;
+  cover?: string;
+  in_production?: boolean;
+  date?: number;
+  idtmdb?:number;
+ 
 }
 
 export interface Season {

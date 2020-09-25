@@ -1,12 +1,12 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { Cinema, Movie, MovieSearchResult,Result } from '../../interfaces/interfaces';
-import { MoviesService } from "../../services/movies.service";
-import { ApiService } from "../../services/api.service";
+import { Cinema, Movie, MovieSearchResult, Result } from '../../interfaces/interfaces';
+import { MoviesService } from '../../services/movies.service';
+import { ApiService } from '../../services/api.service';
 import { CommonService } from '../../services/common.service';
-import { MoviesRootObject,Coll } from "../../interfaces/movies.model" ;
+import { MoviesRootObject, Coll } from '../../interfaces/movies.model' ;
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-//import { DialogService } from '../../services/dialog.service';
+// import { DialogService } from '../../services/dialog.service';
 import {
   MAT_MOMENT_DATE_FORMATS,
   MomentDateAdapter,
@@ -36,13 +36,22 @@ export interface DialogData {
   ],
 })
 export class AddmovieComponent implements OnInit {
+  constructor(
+    // private dialog: DialogService,
+    public sanitizer: DomSanitizer,
+    private ms: MoviesService,
+    private as: ApiService,
+    private cs: CommonService,
+    public dialog: MatDialog,
+    private router: Router
+  ) {}
   // url: SafeResourceUrl;
-  isMobile: boolean = false;
-  searching: boolean = false;
+  isMobile = false;
+  searching = false;
   searchTimer = null;
   searchResults: Result[] = [];
-  uploadingCover: boolean = false;
-  uploadingTicket: boolean = false;
+  uploadingCover = false;
+  uploadingTicket = false;
   col: Coll = {
     idColl: null,
     imgColl: 'null',
@@ -77,19 +86,14 @@ export class AddmovieComponent implements OnInit {
   //   url: '',
 
   // };
-  sending: boolean = false;
+  sending = false;
   value = '';
   url: string = this.movie.url;
   urlSafe: SafeResourceUrl;
-  constructor(
-    // private dialog: DialogService,
-    public sanitizer: DomSanitizer,
-    private ms: MoviesService,
-    private as: ApiService,
-    private cs: CommonService,
-    public dialog: MatDialog,
-    private router: Router
-  ) {}
+  generos: [] = [];
+  ge: string[] = [];
+  numbers = new Array();
+  length = this.numbers.push('w');
   openDialog() {}
   ngOnInit(): void {
     //  this.url = this.sanitizer.bypassSecurityTrustResourceUrl(this.movie.url);
@@ -99,17 +103,17 @@ export class AddmovieComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustResourceUrl(link);
   }
   onCoverChange(event) {
-    let reader = new FileReader();
+    const reader = new FileReader();
     if (
-      (<HTMLInputElement>event.target).files &&
-      (<HTMLInputElement>event.target).files.length > 0
+      ( event.target as HTMLInputElement).files &&
+      ( event.target as HTMLInputElement).files.length > 0
     ) {
-      let file = (<HTMLInputElement>event.target).files[0];
+      const file = ( event.target as HTMLInputElement).files[0];
       reader.readAsDataURL(file);
       reader.onload = () => {
-        //this.movie.cover = reader.result as string;
+        // this.movie.cover = reader.result as string;
         // this.movie.coverStatus = 1;
-        (<HTMLInputElement>document.getElementById('cover')).value = '';
+        ( document.getElementById('cover') as HTMLInputElement).value = '';
       };
     }
   }
@@ -127,11 +131,6 @@ export class AddmovieComponent implements OnInit {
     if (this.movie.movieName.length < 3) {
       return;
     }
-    // this.searchMovieStop();
-    // this.searching = true;
-    // this.ms.getmovies().subscribe((data) => {
-    //   this.searchResults = data;
-    // });
 
     this.searchMovieStop();
     this.searching = true;
@@ -147,14 +146,10 @@ export class AddmovieComponent implements OnInit {
   closeSearchResults() {
     this.searchResults = [];
   }
-  generos: [] = [];
-  ge: string[] = [];
-  numbers = new Array();
-  length = this.numbers.push('w');
 
-  //console.log("new numbers is : " + this.numbers );
-  //length = numbers.push(20);
-  //console.log("new numbers is : " + numbers );
+  // console.log("new numbers is : " + this.numbers );
+  // length = numbers.push(20);
+  // console.log("new numbers is : " + numbers );
   selectResult(movieResult: Result) {
     this.movie = {
       movieName: '',
@@ -162,9 +157,9 @@ export class AddmovieComponent implements OnInit {
       genre: [],
     };
     this.as.seleccionar(movieResult.id).subscribe((data) => {
-      var ids = data.release_date;
-      var str = ids;
-      var res = str.replace(/-/g, '');
+      let ids = data.release_date;
+      let str = ids;
+      let res = str.replace(/-/g, '');
       console.log('new numbers is : ' + this.numbers);
       this.movie.id = Number(res);
       this.movie.idimdb = data.imdb_id;
@@ -183,7 +178,7 @@ export class AddmovieComponent implements OnInit {
         'https://image.tmdb.org/t/p/original' + data.backdrop_path;
       this.movie.url =
         'https://drive.google.com/file/d/1DZ3LworS8tph3WjC5Df_HCwSVlDBtqeX/preview';
-      //this.movie.genre.push(data.genres.);
+      // this.movie.genre.push(data.genres.);
       //   data.genres.forEach(function (value) {
       //     console.log(value.name);
       //       this.movie.genre.push(value.name);

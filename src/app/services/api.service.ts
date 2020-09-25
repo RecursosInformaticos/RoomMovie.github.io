@@ -14,12 +14,13 @@ import {
   MovieSearchDetailResult,
   TMDBRootObject,
   TMDBIDRootObject,
+  SearchTVRootObject,
   Result,
   Movie,
   MovieResult,
   CinemaResult,
 } from '../interfaces/interfaces';
-import { MoviesRootObject,Coll } from "../interfaces/movies.model";
+import { MoviesRootObject,Coll,SeriesRootObject } from "../interfaces/movies.model";
 import { RouterOutlet } from '@angular/router';
 
 @Injectable({
@@ -49,6 +50,14 @@ export class ApiService {
         y
     );
   }
+  searchSeries(q: string, y: string): Observable<SearchTVRootObject> {
+    return this.http.get<SearchTVRootObject>(
+      'https://api.themoviedb.org/3/search/tv?api_key=2ec9323401793e5a207687ea4612d147&language=es-ES&query=' +
+        q +
+        '&year=' +
+        y
+    );
+  }
   seleccionar(id: number): Observable<TMDBIDRootObject> {
     return this.http.get<TMDBIDRootObject>(
       'https://api.themoviedb.org/3/movie/' +
@@ -56,11 +65,11 @@ export class ApiService {
         '?api_key=2ec9323401793e5a207687ea4612d147&language=es-MX'
     );
   }
-  editmovie (pelicula: MoviesRootObject): Observable<MoviesRootObject> {
+  editmovie(pelicula: MoviesRootObject): Observable<MoviesRootObject> {
     return this.http.put<MoviesRootObject>(
-      'https://apiroommovie.herokuapp.com/api/movies/'+pelicula._id,
+      'https://apiroommovie.herokuapp.com/api/movies/' + pelicula._id,
       {
-        _id:pelicula._id,
+        _id: pelicula._id,
         id: pelicula.id,
         idimdb: pelicula.idimdb,
         idtmdb: pelicula.idtmdb,
@@ -100,6 +109,21 @@ export class ApiService {
         img: pelicula.img,
         cover: pelicula.cover,
         url: pelicula.url,
+      }
+    );
+  }
+  addserie(serie: SeriesRootObject): Observable<SeriesRootObject> {
+    return this.http.post<SeriesRootObject>(
+      'https://apiroommovie.herokuapp.com/api/series',
+      {
+         rate:serie.rate,
+    idtmdb: serie.idtmdb,
+    name: serie.name,
+    overview: serie.overview,
+    img:serie.img,
+    cover: serie.cover,
+    id: serie.id
+  
       }
     );
   }
